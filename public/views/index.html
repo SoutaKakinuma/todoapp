@@ -63,10 +63,14 @@
           </div>
         </div>
           <h1>リスト一覧</h1>
-            <ul id="Todo-contents">
+            <ul>
               <li>
+                <span>犬の散歩をする</span>
+                <span>2022/4/12</span>
+                <span>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskupdate" data-whatever="">更新</button>
-
+                </span>
+                
                 <div class="modal" id="taskupdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -115,10 +119,10 @@
                     </div>
                   </div>
                 </div>
-
+                <span>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#datadeleate">
                   削除
-                </button>
+                </button></span>
                 
                 <!-- Modal -->
                 <div class="modal fade" id="datadeleate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
