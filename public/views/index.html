@@ -34,23 +34,24 @@
               <div class="modal-body">
                 <form>
                   <div class="form-group">
-                    <label for="recipient-task" class="col-form-label">タスク</label>
-                    <input type="text" class="form-control" id="recipient-task" name="taskName">
+                    <label for="taskName" class="col-form-label">タスク</label>
+                    <input type="text" class="form-control" id="taskName" name="taskName">
                   </div>
                   <div class="form-group">
-                    <label for="message-text" class="col-form-label">詳細</label>
-                    <textarea class="form-control" id="message-text" name="taskdetail"></textarea>
+                    <label for="taskdetail" class="col-form-label">詳細</label>
+                    <textarea class="form-control" id="taskdetail" name="taskdetail"></textarea>
                   </div>
                   <div class="form-group">
-                    <label for="recipient-date" class="col-form-label">期限</label>
-                    <input type="date" class="form-control" id="recipient-date" name="deadline">
+                    <label for="deadline" class="col-form-label">期限</label>
+                    <input type="date" class="form-control" id="deadline" name="deadline">
                   </div>
                   <div class="form-group">
-                    <label for="recipient-category" class="col-form-label">カテゴリー</label>
-                    <select type="category" class="form-control" id="recipient-category" name="category">
-                      <option value="category1">勉強</option>
-                      <option value="category2">仕事</option>
-                      <option value="category3">サンプル3</option>
+                    <label for="category" class="col-form-label">カテゴリー</label>
+                    <select type="category" class="form-control" id="category" name="category">
+                      <option value="category1">生活</option>
+                      <option value="category2">勉強</option>
+                      <option value="category3">仕事</option>
+                      <option value="category4">趣味</option>
                     </select>
                   </div>
                 </form>
@@ -71,88 +72,89 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskupdate" data-whatever="">更新</button>
                 </span>
                 
-                <div class="modal" id="taskupdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">タスクの更新</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <form>
-                          <div class="form-group">
-                            <label for="recipient-task" class="col-form-label">タスク</label>
-                            <input type="text" class="form-control" id="recipient-task" name="taskName">
-                          </div>
-                          <div class="form-group">
-                            <label for="message-text" class="col-form-label">詳細</label>
-                            <textarea class="form-control" id="message-text" name="taskdetail"></textarea>
-                          </div>
-                          <div class="form-group">
-                            <label for="recipient-date" class="col-form-label">期限</label>
-                            <input type="date" class="form-control" id="recipient-date" name="deadline">
-                          </div>
-                          <div class="form-group">
-                            <label for="recipient-category" class="col-form-label">カテゴリー</label>
-                            <select type="category" class="form-control" id="recipient-category" name="category">
-                              <option value="category1">勉強</option>
-                              <option value="category2">仕事</option>
-                              <option value="category3">サンプル3</option>
-                            </select>
-                          </div>
-                          <div class="form-group">
-                            <label for="recipient-status" class="col-form-label">ステータス</label>
-                            <select type="status" class="form-control" id="recipient-status" name="status">
-                              <option value="status1">進行中</option>
-                              <option value="status2">終了</option>
-                              <option value="status3">遅れ</option>
-                            </select>
-                          </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                        <button type="button" class="btn btn-primary">保存</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
                 <span>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#datadeleate">
                   削除
-                </button></span>
+                </button></span>            
                 
-                <!-- Modal -->
-                <div class="modal fade" id="datadeleate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">下記のタスクを削除しますか？</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        ...
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                        <button type="button" class="btn btn-primary">OK</button>
-                      </div>
-                    </div>
-                  </div>
-                </v>
               </li>
             </ul>
           </div>
         </div>
 
-        
+        <div class="modal fade" id="datadeleate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">下記のタスクを削除しますか？</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                    <button type="button" class="btn btn-primary">OK</button>
+                  </div>
+                </div>
+              </div>        
+            </div>
+          </div>
+        </div>
+        <div class="modal" id="taskupdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">タスクの更新</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="recipient-task" class="col-form-label">タスク</label>
+                    <input type="text" class="form-control" id="recipient-task" name="taskName">
+                  </div>
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label">詳細</label>
+                    <textarea class="form-control" id="message-text" name="taskdetail"></textarea>
+                  </div>        
+                  <div class="form-group">
+                    <label for="recipient-date" class="col-form-label">期限</label>
+                    <input type="date" class="form-control" id="recipient-date" name="deadline">
+                  </div>                
+                  <div class="form-group">
+                    <label for="recipient-category" class="col-form-label">カテゴリー</label>
+                    <select type="category" class="form-control" id="recipient-category" name="category">
+                      <option value="category1">勉強</option>
+                      <option value="category2">仕事</option>
+                      <option value="category3">サンプル3</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="recipient-status" class="col-form-label">ステータス</label>
+                    <select type="status" class="form-control" id="recipient-status" name="status">
+                      <option value="status1">進行中</option>
+                      <option value="status2">終了</option>
+                      <option value="status3">遅れ</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                <button type="button" class="btn btn-primary">保存</button>
+              </div>
+            </div>
+          </div>
+        </div>    
       </main>
     </div>
-
+  </body>  
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
