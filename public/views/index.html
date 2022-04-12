@@ -64,20 +64,31 @@
           </div>
         </div>
           <h1>リスト一覧</h1>
-            <ul>
-              <li>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <span class="#ffa500"></span>
                 <span>犬の散歩をする</span>
                 <span>2022/4/12</span>
                 <span>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskupdate" data-whatever="">更新</button>
+                </span> 
+                <span>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#datadeleate">
+                  削除
+                </button></span>           
+              </li>
+                
+              <li class="list-group-item">
+                <span class="#ffa500"></span>
+                <span>犬の餌を購入する</span>
+                <span>2022/4/12</span>
+                <span>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskupdate">更新</button>
                 </span>
-                
-                
                 <span>
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#datadeleate">
                   削除
                 </button></span>            
-                
               </li>
             </ul>
           </div>
@@ -88,9 +99,6 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">下記のタスクを削除しますか？</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
                 </div>
                   <div class="modal-body">
                     ...
@@ -109,9 +117,6 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">タスクの更新</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
               </div>
               <div class="modal-body">
                 <form>
