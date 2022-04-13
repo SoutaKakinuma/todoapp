@@ -23,13 +23,60 @@
     <div class="container">
       <!-- Content here -->
       <main> 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask" data-whatever=""> + タスクを追加</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addtask">
+           + タスクを追加</button>
+          <h1>リスト一覧</h1>
+            <ul class="list-group">
+              <li class="list-group-item category-orange">
+                <div class="row align-items-center">
+                  <div class="col-5">
+                    <span>犬の散歩をする</span>
+                  </div>
+                  <div class="col-3">
+                    <span>2022/4/12</span>
+                  </div>
+                  <div class="col-2">
+                    <span>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskupdate">更新</button>
+                    </span> 
+                  </div>  
+                  <div class="col-2"> 
+                    <span>
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#datadeleate">削除
+                    </button></span>
+                  </div>
+                </div>           
+              </li>
+                
+              <li class="list-group-item category-orange">
+                <div class="row align-items-center">
+                  <div class="col-5">
+                    <span>犬の餌を購入する</span>
+                  </div>
+                  <div class="col-3">
+                    <span>2022/4/12</span>
+                  </div>
+                  <div class="col-2">
+                    <span>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskupdate">更新</button>
+                    </span> 
+                  </div>  
+                  <div class="col-2"> 
+                    <span>
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#datadeleate">削除</button>
+                    </span>
+                  </div>
+                </div>           
+              </li>
+            </ul>
+          </div>
+        </div>
 
         <div class="modal" id="addtask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">タスク登録</h5>
+                <h5 class="modal-title">タスク登録</h5>
               </div>
               <div class="modal-body">
                 <form>
@@ -63,58 +110,12 @@
             </div>
           </div>
         </div>
-          <h1>リスト一覧</h1>
-            <ul class="list-group">
-              <li class="list-group-item category-orange">
-                <div class="row">
-                  <div class="col-5">
-                    <span>犬の散歩をする</span>
-                  </div>
-                  <div class="col-3">
-                    <span>2022/4/12</span>
-                  </div>
-                  <div class="col-2">
-                    <span>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskupdate">更新</button>
-                    </span> 
-                  </div>  
-                  <div class="col-2"> 
-                    <span>
-                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#datadeleate">削除
-                    </button></span>
-                  </div>
-                </div>           
-              </li>
-                
-              <li class="list-group-item category-orange">
-                <div class="row">
-                  <div class="col-5">
-                    <span>犬の餌を購入する</span>
-                  </div>
-                  <div class="col-3">
-                    <span>2022/4/12</span>
-                  </div>
-                  <div class="col-2">
-                    <span>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskupdate">更新</button>
-                    </span> 
-                  </div>  
-                  <div class="col-2"> 
-                    <span>
-                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#datadeleate">削除
-                    </button></span>
-                  </div>
-                </div>           
-              </li>
-            </ul>
-          </div>
-        </div>
 
         <div class="modal fade" id="datadeleate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">下記のタスクを削除しますか？</h5>
+                <h5 class="modal-title">下記のタスクを削除しますか？</h5>
                 </div>
                   <div class="modal-body">
                     ...
@@ -132,7 +133,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">タスクの更新</h5>
+                <h5 class="modal-title">タスクの更新</h5>
               </div>
               <div class="modal-body">
                 <form>
@@ -160,7 +161,7 @@
                     <label for="recipient-status" class="col-form-label">ステータス</label>
                     <select type="status" class="form-control" id="recipient-status" name="status">
                       <option value="status1">進行中</option>
-                      <option value="status2">終了</option>
+                      <option value="status2">完了</option>
                       <option value="status3">遅れ</option>
                     </select>
                   </div>

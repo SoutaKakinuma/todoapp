@@ -1,8 +1,32 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #f5f5f5;
 }
 
 a {
   color: #00b7ff;
 }
+
+h1 {
+  font-size: 30px;
+  font-family: Meiryo;
+  text-align: center;
+}
+
+li {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+li {
+  font-size: 18px;
+  font-family: Meiryo;
+  text-align: left;
+}
+
+li.category-orange {
+  border-left-color: orange;
+  border-left-width: 20px;
+}
+
