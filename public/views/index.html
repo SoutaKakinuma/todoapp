@@ -80,18 +80,22 @@
               </div>
               <div class="modal-body">
                 <form>
+                  
                   <div class="form-group">
                     <label for="taskName" class="col-form-label">タスク</label>
                     <input type="text" class="form-control" id="taskName" name="taskName">
                   </div>
+
                   <div class="form-group">
                     <label for="taskdetail" class="col-form-label">詳細</label>
                     <textarea class="form-control" id="taskdetail" name="taskdetail"></textarea>
                   </div>
+                  
                   <div class="form-group">
                     <label for="deadline" class="col-form-label">期限</label>
                     <input type="date" class="form-control" id="deadline" name="deadline">
                   </div>
+
                   <div class="form-group">
                     <label for="category" class="col-form-label">カテゴリー</label>
                     <select type="category" class="form-control" id="category" name="category">
@@ -101,11 +105,12 @@
                       <option value="category4">趣味</option>
                     </select>
                   </div>
+
                 </form>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                <button type="button" class="btn btn-primary">登録</button>
+                <button type="button" class="btn btn-primary" id="create-task">登録</button>
               </div>
             </div>
           </div>
@@ -176,7 +181,7 @@
         </div>    
       </main>
     </div>
-  </body>  
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -204,6 +209,25 @@
       var modal = $(this)
       modal.find('.modal-title').text('New message to ' + recipient)
       modal.find('.modal-body input').val(recipient)
+      })
+    </script>
+    <script src="../javascripts/index.js"></script>
+    <script>
+      $("#create-task").on("click", async function () {
+        const requestData = {
+          taskName: $("#addtask input[name=task]").val(),
+          deadlime: $("#addtask input[name=deadline]").val(),
+          category: $("#addtask select[name=category]").val(),
+        };
+
+        //API実行
+        const response = await httpPost(
+          "//" + window.location.host + "/api/tasks",
+          requestData
+        );
+
+        //画面リロード
+        window.location.reload();
       })
     </script>
   </body>
