@@ -30,3 +30,17 @@ li.category-orange {
   border-left-width: 20px;
 }
 
+li.category-green {
+  border-left-color: #008000;
+  border-left-width: 20px;
+}
+
+li.category-blue {
+  border-left-color: #0000ff;
+  border-left-width: 20px;
+}
+
+li.category-red {
+  border-left-color: #ff0000;
+  border-left-width: 20px;
+}

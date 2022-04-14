@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const tasks = require("../../src/tasks.js");
+const tasks = require("../../src/tasks");
 const items = require("../../src/items");
 
 
@@ -23,5 +23,16 @@ router.post("/tasks", async function (req, res, next) {
   res.send(postTasks);
 });
 
+/* タスク一覧取得 */
+router.get("/tasks", async function (req, res, next) {
+  const getTasks = await tasks.getTasks();
+  res.send(getTasks);
+});
+
+/* タスク一件取得　*/
+router.get("/tasks/:id", async function (req,res, next) {
+  const getTasksid = await tasks.getTasksid();
+  res.send(getTasksid);
+})
 
 module.exports = router;
