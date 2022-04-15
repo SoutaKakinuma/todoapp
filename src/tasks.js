@@ -42,7 +42,7 @@ getTasks = async function () {
     }
 };
 
-getTasksid = async function () {
+getTasksid = async function (id) {
     let connection = null;
     try {
         connection = await mysql.createConnection(config.dbSetting)
@@ -59,6 +59,23 @@ getTasksid = async function () {
     }
 };
 
+patchTasksid = async function (id, body) {
+    let connection = null;
+    try {
+        connection = await mysql.createConnection(config.dbSetting)
+        //SQL
+        const sql =
+            "UPDATE t_task SET task_name=?, deadline=?, category_id=?, task_status=?, updated_at=? WHERE id=?;"
+        let d = [body.taskName, body.deadline, body.category, body.status, new Date(), id,];
+        const [rows, fields] = await connection.query(sql, d);
+    return rows;
+  } catch (err) {
+    console.log(err);
+  } finally {
+    connection.end();
+    }
+};
+
 exports.postTasks = postTasks;
 exports.getTasks = getTasks;
-
+exports.getTasksid = getTasksid;
