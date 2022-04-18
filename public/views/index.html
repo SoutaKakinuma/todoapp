@@ -35,12 +35,12 @@
                           <form id="create-form">
                             <div class="form-group">
                               <label for="task" class="col-form-label">タスク</label>
-                              <input type="text" class="form-control" id="taskName" name="taskName">
+                              <input type="text" class="form-control" id="taskName" name="taskName"/>
                             </div>
                             
                             <div class="form-group">
                               <label for="deadline" class="col-form-label">期限</label>
-                              <input type="date" class="form-control" id="deadline" name="deadline">
+                              <input type="date" class="form-control" id="deadline" name="deadline"/>
                             </div>
 
                             <div class="form-group">
@@ -66,24 +66,7 @@
           <ul class="list-group" id="taskList">
           </ul>
 
-        <div class="modal" id="datadeleate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">下記のタスクを削除しますか？</h5>
-                </div>
-                  <div class="modal-body">
-                    ...
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                    <button type="button" class="btn btn-primary">OK</button>
-                  </div>
-                </div>
-              </div>        
-            </div>
-          </div>
-        </div>
+        
         <div class="modal" id="update-form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -92,17 +75,14 @@
               </div>
               <div class="modal-body">
                 <form>
+                  <input type="hidden" name="id"/>
                   <div class="form-group">
-                    <label for="task_name" class="col-form-label">タスク</label>
-                    <input type="text" class="form-control" id="task_name" name="task_name">
+                    <label for="task" class="col-form-label">タスク</label>
+                    <input type="text" class="form-control" id="task" name="task"/>
                   </div>
                   <div class="form-group">
-                    <label for="taskdetail" class="col-form-label">詳細</label>
-                    <textarea class="form-control" id="taskdetail" name="taskdetail"></textarea>
-                  </div>        
-                  <div class="form-group">
                     <label for="deadline" class="col-form-label">期限</label>
-                    <input type="date" class="form-control" id="deadline" name="deadline">
+                    <input type="date" class="form-control" id="deadline" name="deadline"/>
                   </div>                
                   <div class="form-group">
                     <label for="category" class="col-form-label">カテゴリー</label>
@@ -116,9 +96,9 @@
                   <div class="form-group">
                     <label for="status" class="col-form-label">ステータス</label>
                     <select type="status" class="form-control" id="status" name="status">
-                      <option value="a">進行中</option>
-                      <option value="b">完了</option>
-                      <option value="c">遅れ</option>
+                      <option value="1">進行中</option>
+                      <option value="2">完了</option>
+                      <option value="3">遅れ</option>
                     </select>
                   </div>
                 </form>
@@ -186,31 +166,32 @@
       $(async function () {
         const response = await httpGet(
           "//" + window.location.host + "/api/tasks");
-        const list = response.map((item) => {
-          const date = new Date(item.deadline);
-          const year = date.getFullYear();
-          const month = date.getMonth() + 1;
-          const day = date.getDate();
 
-          const deadline = year + "/" + month + "/" + day;
+          const list = response.map((item) => {
 
-          let categoryClassName = "";
-          switch (item.category_id) {
-            case 1:
-              categoryClassName = "category-orange";
-              break;
-            case 2:
-              categoryClassName = "category-green";
-              break;
-            case 3:
-              categoryClassName = "category-blue";
-              break;
-            case 4:
-              categoryClassName = "category-red";
-              break;
+            const date = new Date(item.deadline);
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+
+          const deadline = year + "年" + month + "月" + day + "日";
+            let categoryClassName = "";
+            switch (item.category_id) {
+              case 1:
+                categoryClassName = "category-orange";
+                break;
+              case 2:
+                categoryClassName = "category-green";
+                break;
+              case 3:
+                categoryClassName = "category-blue";
+                break;
+              case 4:
+                categoryClassName = "category-red";
+                break;
             default:
             // なにもしない
-          }
+            }
 
           // リストを表示
           return `
@@ -229,46 +210,96 @@
                 </div>  
                 <div class="col-2"> 
                   <span>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#datadeleate" data-id=${item.id}>削除</button>
+                    <button type="button" class="btn btn-danger" id="delete-button" data-toggle="modal" data-target="#datadeleate" data-id=${item.id}, data-delete=${item.task_name}>削除</button>
                   </span>
                 </div>
             </li>`
-        });
-
+          });  
         // ul タグにリストを追加
-        $("ul#taskList").append(list);
+        $("ul#taskList").append(list)
       });
-
-      //更新ボタン押下時
-     $(document).on("click", ".update-button", async function () {
-       $("#update-form").show();
+      
+      //更新ボタン押下時 (document)は動的に生成されるから
+     $(document).on("click", "#update-button", async function () {
+       //$("#update-form").show(); modalを使っている場合は必要なし
        const id = $(this).data("id");
         const response = await httpGet(
           "//" + window.location.host + `/api/tasks/${id}`
         );
 
-        // 日付を xxxx-xx-xxに変換
+        // 日付 slice(-2)は右から二桁の数を取得
         const date = new Date(response[0].deadline);
         const year = date.getFullYear();
         const month = ("0" + (date.getMonth() + 1)).slice(-2);
-        const day = ("0" + (date.getDate() + 1)).slice(-2);
-        const deadlineVal = `${year}/${month}/${day}`;
+        const day = ("0" + (date.getDate())).slice(-2);
+        const deadlineVal = `${year}-${month}-${day}`;
 
-        // 初期値をセット
+        // 初期値
         $("#update-form input[name=id]").val(response[0].id);
-        $("#update-form input[name=task_name]").val(response[0].task_name);
+        $("#update-form input[name=task]").val(response[0].task_name);
         $("#update-form input[name=deadline]").val(deadlineVal);
         $("#update-form select[name=category]").val(response[0].category_id);
         $("#update-form select[name=status]").val(response[0].task_status);
       });
 
-      // フォームを閉じたいとき
-      $(".display-none").on("click", function () {
-        $("#create-form").hide();
-        $("#update-form").hide();
+      //データ更新
+      $("#update-task").on("click", async function() {
+        const id = $("#update-form input[name=id]").val();
+
+        const requestData = {
+          taskName: $("#update-form input[name=task]").val(),
+          deadline: $("#update-form input[name=deadline]").val(),
+          category: $("#update-form select[name=category]").val(),
+          status: $("#update-form select[name=status]").val(),
+        };
+
+        //API実行
+        const response = await httpUpdate(
+          "//" + window.location.host + `/api/tasks/${id}`,
+          requestData
+        );
+
+        //画面リロード
+        window.location.reload();
       });
+
+      //データ削除
+      $(document).on("click","#delete-button", async function () {
+        const taskName = $(this).data("delete");
+        if (confirm(`下記の内容を削除します。\n ${taskName}`)){
+          const id = $(this).data("id");
+
+        //API実行
+          const response = await httpDelete(
+            "//" + window.location.host + `/api/tasks/${id}`,
+          );
+
+          //画面リロード
+          window.location.reload();
+        }
+      });
+
+
     </script>
   </body>
 </html>
 
 
+<div class="modal" id="datadeleate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">下記のタスクを削除しますか？</h5>
+                </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                    <button type="button" class="btn btn-primary" id="delete-button">OK</button>
+                  </div>
+                </div>
+              </div>        
+            </div>
+          </div>
+        </div>
