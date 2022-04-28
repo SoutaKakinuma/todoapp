@@ -47,4 +47,40 @@ router.delete("/tasks/:id", async function (req, res, next) {
   res.send(deleteTasksid);
 });
 
+/*ソート機能(作成順)*/
+router.get("/tasks1", async function (req, res, next) {
+  const getTasksDeadline = await tasks.getTasksDeadline();
+  res.send(getTasksDeadline);
+});
+
+/*今日のタスク取得*/
+router.get("/tasks2", async function(req, res, next) {
+  const gettasksToday = await tasks.gettasksToday();
+  res.send(gettasksToday);
+});
+
+/*ソート機能(新規作成順)*/
+router.get("/tasks3", async function (req,res,next) {
+  const gettasksNew = await tasks.gettasksNew();
+  res.send(gettasksNew);
+});
+
+/*ステータスが完了したタスク*/
+router.get("/tasks4", async function (req,res,next) {
+  const gettasksFinish = await tasks.gettasksFinish();
+  res.send(gettasksFinish);
+}); 
+
+/*ステータスが進行中のタスク*/
+router.get("/tasks5", async function (req, res, next) {
+  const gettasksstatus = await tasks.gettasksstatus();
+  res.send(gettasksstatus);
+});
+
+/*ステータスが遅れているタスク*/
+router.get("/tasks6", async function (req, res, next) {
+  const gettasksslow = await tasks.gettasksslow();
+  res.send(gettasksslow);
+});
+
 module.exports = router;
